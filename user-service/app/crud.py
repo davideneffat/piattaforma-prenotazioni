@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from models import User
+from .models import User
 from passlib.context import CryptContext
-from schemas import UserCreate
-from auth import verify_password, get_password_hash
+from .schemas import UserCreate
+from .auth import verify_password, get_password_hash
 
 
 def create_user(db: Session, user):

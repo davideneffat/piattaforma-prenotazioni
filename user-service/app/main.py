@@ -1,10 +1,10 @@
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from database import SessionLocal
-from schemas import UserCreate
-from crud import create_user, authenticate_user
-from auth import create_access_token
+from .database import SessionLocal
+from .schemas import UserCreate
+from .crud import create_user, authenticate_user
+from .auth import create_access_token
 
 app = FastAPI()
 
@@ -29,3 +29,4 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     
     access_token = create_access_token(data={"sub": user.username})
     return {"access_token": access_token, "token_type": "bearer"}
+

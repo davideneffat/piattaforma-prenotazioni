@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://booking-db:5432/booking
+    username: booking_user
+    password: booking_pass
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: booking-service
+
+server:
+  port: 8081
+
+jwt:
+  secret: ${JWT_SECRET:supersecretkey}
+  algorithm: HS256
+
+user-service:
+  url: ${USER_SERVICE_URL:http://user-service:8000}
