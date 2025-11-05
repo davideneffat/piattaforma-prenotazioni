@@ -3,8 +3,14 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from .database import SessionLocal
 from .schemas import UserCreate
-from .crud import create_user, authenticate_user
+from .crud import create_user, authenticate_user, get_user_by_username
 from .auth import create_access_token
+
+from . import crud, models, schemas
+from .database import SessionLocal, engine, Base
+
+# Creazione delle tabelle nel database
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -30,3 +36,10 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     access_token = create_access_token(data={"sub": user.username})
     return {"access_token": access_token, "token_type": "bearer"}
 
+@app.get("/users/by-username/{username}")
+def read_user_by_username(username: str, db: Session = Depends(get_db)):
+    db_user = get_user_by_username(db, username=username)
+    if db_user is None:
+        # Se l'utente non viene trovato, restituisci un 404
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user

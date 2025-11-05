@@ -13,9 +13,10 @@ spring:
 server:
   port: 8081
 
-jwt:
-  secret: ${JWT_SECRET:supersecretkey}
-  algorithm: HS256
 
 user-service:
   url: ${USER_SERVICE_URL:http://user-service:8000}
+
+
+jwt:
+  secret: c3VwZXJzZWNyZXRrZXlBQUFramFid2Vma3V5d2VsZmJ1YXllZmtzYWZoZWJza2FqaGZlYmtqZmFzYmprZGhnYnNhc2FqZmJrc3Zma2FzYWJlZmtqaHNlYmtqZmhic2Vha2pma2poYXNldmY=

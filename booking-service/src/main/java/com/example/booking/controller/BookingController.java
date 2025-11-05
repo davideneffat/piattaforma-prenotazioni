@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.*;
-
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -29,8 +29,8 @@ public class BookingController {
      * Richiede che il middleware (es. API Gateway) abbia aggiunto "username" all'HttpServletRequest.
      */
     @PostMapping
-    public ResponseEntity<?> createBooking(@RequestBody Booking booking, HttpServletRequest request) {
-        String username = (String) request.getAttribute("username");
+    public ResponseEntity<?> createBooking(@RequestBody Booking booking, Principal principal) {
+        String username = principal.getName(); // Ritorna username estratto dal token
         if (username == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized: missing username attribute");
         }

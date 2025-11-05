@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk-slim
+FROM openjdk:26-ea-slim
 WORKDIR /app
 COPY target/booking-service-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8081
