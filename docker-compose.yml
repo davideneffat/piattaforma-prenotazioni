@@ -35,3 +35,24 @@ services:
       POSTGRES_PASSWORD: booking_pass
     ports:
       - "5433:5432"
+  
+  availability-db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - availability_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=availabilitydb
+
+  availability-service:
+    build: ./availability-service
+    ports:
+      - "8082:8082"
+    environment:
+      - MONGO_URI=mongodb://availability-db:27017/availabilitydb
+    depends_on:
+      - availability-db
+
+volumes:
+  availability_data:

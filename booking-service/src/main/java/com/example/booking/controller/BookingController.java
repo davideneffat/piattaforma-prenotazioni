@@ -42,7 +42,7 @@ public class BookingController {
         }
 
         booking.setUserId(userDto.id());
-        Booking saved = bookingService.createBooking(booking);
+        Booking saved = bookingService.createBooking(booking, username);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }

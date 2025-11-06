@@ -20,3 +20,6 @@ user-service:
 
 jwt:
   secret: c3VwZXJzZWNyZXRrZXlBQUFramFid2Vma3V5d2VsZmJ1YXllZmtzYWZoZWJza2FqaGZlYmtqZmFzYmprZGhnYnNhc2FqZmJrc3Zma2FzYWJlZmtqaHNlYmtqZmhic2Vha2pma2poYXNldmY=
+
+availability-service:
+  url: ${AVAILABILITY_SERVICE_URL:http://availability-service:8082}
